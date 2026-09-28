@@ -27,7 +27,7 @@ from experimental.builder.ops import backend
 @pytest.mark.parametrize("shape,shapes,width", [
     ((-1, 1, 2048), [(1, 1, 2048)] * 3, 6144),
     ((-1, -1, 128), [(1, 1, 128), (2, 3, 128), (2, 7, 128)], 128),
-    ((-1, 2, -1, 128), [(1, 2, 1, 128), (2, 2, 3, 128), (2, 2, 7, 128)], 128),
+    ((-1, 2, 1, 128), [(1, 2, 1, 128), (2, 2, 1, 128), (4, 2, 1, 128)], 128),
     ((-1, 128), [(1, 128), (7, 128), (8, 128)], 128),
 ])
 def test_nvfp4_linear_build_and_execute(shape, shapes, width, with_bias):

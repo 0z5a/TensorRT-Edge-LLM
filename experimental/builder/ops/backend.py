@@ -1442,7 +1442,8 @@ class Net:
         typed constants dequantized in-graph; otherwise the weight is
         pre-decoded to an FP16 constant (numerically equivalent).
         """
-        if rank > 2 and weight_dq_in_graph:
+        if (rank > 2 and weight_dq_in_graph
+                and self._unwrap(x).shape[-2] == 1):
             # Rank-2 GEMM avoids a TensorRT 10.16 compiler crash for fixed-token
             # NVFP4 projections followed by an FP32 cast (issue #216).
             x = self._unwrap(x)
